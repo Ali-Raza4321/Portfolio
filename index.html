@@ -42,6 +42,7 @@
       height: 100vh !important;
       touch-action: none;
     }
+
     .page-loader {
       position: fixed;
       top: 0;
@@ -55,14 +56,21 @@
       align-items: center;
       justify-content: center;
     }
+
     body.light-mode .page-loader {
       background-color: #f8fafc;
     }
   </style>
   <noscript>
     <style>
-      .page-loader { display: none !important; }
-      body.is-loading { overflow: auto !important; height: auto !important; }
+      .page-loader {
+        display: none !important;
+      }
+
+      body.is-loading {
+        overflow: auto !important;
+        height: auto !important;
+      }
     </style>
   </noscript>
   <script>
@@ -72,7 +80,7 @@
         document.documentElement.classList.add('light-mode');
         document.addEventListener('DOMContentLoaded', () => document.body.classList.add('light-mode'));
       }
-    } catch(e) {}
+    } catch (e) { }
   </script>
 </head>
 
@@ -137,10 +145,11 @@
         </button>
 
         <!-- Resume Button -->
-        <a href="https://drive.google.com/file/d/1sxf3w-lTKI5FoGiG-8MaAkf7FKm5wc3z/view?usp=drive_link" target="_blank"
-          rel="noopener noreferrer" class="btn btn-primary btn-sm" id="nav-resume-btn">
+        <a href="https://drive.google.com/file/d/1h_oZurtWzojvwukD9gKk56DYABd8xEV6/view?usp=drive_link" target="_blank"
+          rel="noopener noreferrer" class="btn btn-primary btn-sm" id="nav-resume-btn"
+          title="View / Download Ali Raza's CV">
           <span>Resume</span>
-          <i class="fas fa-arrow-up-right-from-square" style="font-size: 0.8rem;"></i>
+          <i class="fas fa-file-pdf" style="font-size: 0.85rem;"></i>
         </a>
 
         <!-- Mobile Menu Hamburger -->
@@ -184,6 +193,11 @@
               <a href="#projects" class="btn btn-primary">
                 <span>Explore Projects</span>
                 <i class="fas fa-arrow-right"></i>
+              </a>
+              <a href="https://drive.google.com/file/d/1h_oZurtWzojvwukD9gKk56DYABd8xEV6/view?usp=drive_link"
+                target="_blank" rel="noopener noreferrer" class="btn btn-secondary" title="View / Download CV">
+                <span><i class="fas fa-file-pdf" style="color: var(--accent-cyan); margin-right: 6px;"></i>CV /
+                  Resume</span>
               </a>
               <a href="#contact" class="btn btn-secondary">
                 <span>Get In Touch</span>
@@ -457,14 +471,14 @@
                 <li>Architected and optimized core modules for <strong>MCode POS</strong>, a comprehensive restaurant
                   and
                   hotel Point of Sale system.</li>
-                <li>Engineered secure, scalable modules for <strong><a href="http://www.eimshub.com/" target="_blank"
-                      rel="noopener">EIMS</a></strong>, an enterprise-grade education management portal.</li>
-                <li>Constructed robust RESTful APIs in Node.js & Express.js ensuring secure authentication and fast
-                  query
-                  performance.</li>
-                <li>Designed complex MongoDB aggregations, schema validations, and transactional queries for high-volume
-                  business logic.</li>
-                <li>Built responsive, accessible interfaces in React.js with Redux state management.</li>
+                <li>Engineered <strong><a href="http://www.eimshub.com/" target="_blank"
+                      rel="noopener">EIMS</a></strong>, an enterprise-grade education management platform with student
+                  lifecycle, accounts, inventory, and reporting.</li>
+                <li>Built secure REST APIs and optimized complex MongoDB aggregation pipelines and indexing,
+                  <strong>reducing API response times by 40%</strong> for large reporting datasets.
+                </li>
+                <li>Constructed transactional queries, schema validations, and responsive client interfaces in React.js
+                  with Redux state management.</li>
               </ul>
               <div class="tech-tags-list">
                 <span class="tech-tag">React.js</span>
@@ -532,12 +546,12 @@
               </div>
               <div class="timeline-location"><i class="fas fa-location-dot"></i> DHA Phase 3, Lahore · Onsite</div>
               <ul class="timeline-bullets">
+                <li>Integrated REST APIs and developed reusable frontend components using JavaScript, Bootstrap, HTML5,
+                  and CSS3.</li>
+                <li>Optimized frontend assets and bundle sizes, <strong>cutting page load times by 35%</strong> and
+                  improving Google PageSpeed scores to <strong>90+</strong> and overall website performance.</li>
                 <li>Developed pixel-perfect, responsive user interfaces translating Figma design mockups into production
                   code.</li>
-                <li>Worked in close collaboration with UI/UX designers and backend developers for REST API integrations.
-                </li>
-                <li>Optimized assets and stylesheet structures to significantly enhance PageSpeed performance metrics.
-                </li>
               </ul>
               <div class="tech-tags-list">
                 <span class="tech-tag">HTML5</span>
@@ -545,6 +559,40 @@
                 <span class="tech-tag">JavaScript</span>
                 <span class="tech-tag">API Integration</span>
                 <span class="tech-tag">Bootstrap</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Key Career Achievements & Milestones (From CV) -->
+        <div class="career-achievements-wrap">
+          <div class="achievements-heading">
+            <i class="fas fa-award"></i>
+            <span>Key Engineering Milestones & Achievements</span>
+          </div>
+          <div class="achievements-grid">
+            <div class="achievement-card">
+              <div class="achievement-icon"><i class="fas fa-shield-halved"></i></div>
+              <div class="achievement-info">
+                <div class="achievement-meta">
+                  <span class="achievement-company">mCode Technologies</span>
+                  <span class="achievement-date">Jan 2024 - Mar 2025</span>
+                </div>
+                <h4>Multi-Tenant RBAC System Architecture</h4>
+                <p>Engineered a reusable, granular multi-tenant Role-Based Access Control (RBAC) security system
+                  successfully adopted across <strong>5+ enterprise products</strong>.</p>
+              </div>
+            </div>
+            <div class="achievement-card">
+              <div class="achievement-icon"><i class="fas fa-network-wired"></i></div>
+              <div class="achievement-info">
+                <div class="achievement-meta">
+                  <span class="achievement-company">Code5 Technologies</span>
+                  <span class="achievement-date">Mar 2025 - Present</span>
+                </div>
+                <h4>DragonPro Enterprise ISP Platform</h4>
+                <p>Architected and scaled the flagship DragonPro Telecom & ISP platform with <strong>30+ enterprise
+                    modules</strong> serving multiple production telecom tenants.</p>
               </div>
             </div>
           </div>
@@ -1243,7 +1291,7 @@
             </div>
           </article>
 
-          <!-- Project 8: Restaurant POS System -->
+          <!-- Project 8: Multi-Tenant Enterprise SaaS ERP Platform -->
           <article class="project-card" data-category="fullstack dashboard">
             <div class="card-browser-bar">
               <div class="browser-dots">
@@ -1261,13 +1309,14 @@
             </div>
 
             <div class="project-image-wrapper">
-              <span class="project-category-tag"><i class="fas fa-utensils"></i> Full-Stack POS</span>
-              <img src="Project_images/pos.png" alt="Restaurant Point of Sale System" loading="lazy" />
+              <span class="project-category-tag"><i class="fas fa-sitemap"></i> Multi-Tenant SaaS ERP</span>
+              <img src="Project_images/pos.png" alt="Multi-Tenant Enterprise SaaS ERP and POS Platform"
+                loading="lazy" />
               <div class="project-image-overlay">
                 <a href="http://demo.pos.eimshub.com/account/login" target="_blank" rel="noopener noreferrer"
                   class="quick-view-btn">
                   <i class="fas fa-arrow-up-right-from-square"></i>
-                  <span>Launch POS Demo</span>
+                  <span>Launch Live Demo</span>
                 </a>
               </div>
             </div>
@@ -1280,21 +1329,23 @@
 
               <h3 class="project-title">
                 <a href="http://demo.pos.eimshub.com/account/login" target="_blank" rel="noopener">
-                  <span>Restaurant POS System</span>
+                  <span>Multi-Tenant Enterprise SaaS ERP Platform</span>
                   <i class="fas fa-arrow-up-right-from-square"></i>
                 </a>
               </h3>
 
               <p class="project-description">
-                Enterprise Point of Sale (POS) solution for restaurants and hospitality. Features live table orders,
-                kitchen tickets, inventory, tax billing, and revenue analytics.
+                Scalable multi-tenant ERP/POS platform engineered with strict tenant data isolation, granular RBAC, and
+                modules for Accounting, Invoicing, Inventory, Procurement, HR/Payroll, Manufacturing, barcode/SKU
+                tracking, and real-time MongoDB transactions.
               </p>
 
               <div class="project-tags-wrap">
                 <span class="project-tag-pill"><i class="fab fa-react"></i> React.js</span>
                 <span class="project-tag-pill"><i class="devicon-nodejs-plain"></i> Node.js</span>
                 <span class="project-tag-pill"><i class="devicon-mongodb-plain"></i> MongoDB</span>
-                <span class="project-tag-pill"><i class="fas fa-receipt"></i> POS Logic</span>
+                <span class="project-tag-pill"><i class="devicon-redux-original"></i> Redux</span>
+                <span class="project-tag-pill"><i class="devicon-docker-plain"></i> Docker</span>
               </div>
 
               <div class="project-footer-actions">
@@ -1789,22 +1840,25 @@
               <div class="skill-category-icon"><i class="devicon-react-original"></i></div>
               <div>
                 <h3>Frontend Engineering</h3>
-                <span style="font-size:0.8rem; color:var(--text-muted);">UI & Reactive SPAs</span>
+                <span style="font-size:0.8rem; color:var(--text-muted);">UI, Reactive SPAs & Types</span>
               </div>
             </div>
             <div class="skills-list-grid">
               <div class="skill-pill-item"><i class="devicon-nextjs-original"></i> Next.js</div>
               <div class="skill-pill-item"><i class="devicon-react-original"></i> React.js</div>
+              <div class="skill-pill-item"><i class="devicon-typescript-plain" style="color: #38bdf8;"></i> TypeScript
+              </div>
+              <div class="skill-pill-item"><i class="devicon-javascript-plain"></i> JavaScript (ES6+)</div>
               <div class="skill-pill-item"><i class="devicon-react-original" style="color:var(--accent-cyan);"></i>
                 React Native</div>
-              <div class="skill-pill-item"><i class="devicon-javascript-plain"></i> JavaScript (ES6+)</div>
               <div class="skill-pill-item"><i class="devicon-redux-original"></i> Redux Toolkit</div>
+              <div class="skill-pill-item"><i class="fas fa-layer-group" style="color: #a855f7;"></i> RTK Query</div>
+              <div class="skill-pill-item"><i class="fas fa-arrows-split-up-and-left" style="color: #06b6d4;"></i> Axios
+                Interceptors</div>
               <div class="skill-pill-item"><i class="devicon-tailwindcss-plain"></i> Tailwind CSS</div>
-              <div class="skill-pill-item"><i class="devicon-html5-plain"></i> HTML5 & CSS3</div>
-              <div class="skill-pill-item"><i class="devicon-bootstrap-plain"></i> Bootstrap 5</div>
               <div class="skill-pill-item"><i class="devicon-materialui-plain"></i> Material UI</div>
-              <div class="skill-pill-item"><i class="fas fa-bolt"></i> Chakra UI</div>
-              <div class="skill-pill-item"><i class="devicon-jquery-plain"></i> jQuery</div>
+              <div class="skill-pill-item"><i class="devicon-bootstrap-plain"></i> Bootstrap 5</div>
+              <div class="skill-pill-item"><i class="devicon-html5-plain"></i> HTML5 & CSS3</div>
             </div>
           </div>
 
@@ -1814,18 +1868,22 @@
               <div class="skill-category-icon"><i class="devicon-nodejs-plain"></i></div>
               <div>
                 <h3>Backend & APIs</h3>
-                <span style="font-size:0.8rem; color:var(--text-muted);">Server-Side Systems</span>
+                <span style="font-size:0.8rem; color:var(--text-muted);">Server-Side Systems & Sockets</span>
               </div>
             </div>
             <div class="skills-list-grid">
               <div class="skill-pill-item"><i class="devicon-nodejs-plain"></i> Node.js</div>
               <div class="skill-pill-item"><i class="devicon-express-original"></i> Express.js</div>
               <div class="skill-pill-item"><i class="fas fa-network-wired"></i> RESTful APIs</div>
-              <div class="skill-pill-item"><i class="fas fa-key"></i> JWT & Auth</div>
-              <div class="skill-pill-item"><i class="fas fa-plug"></i> API Integration</div>
-              <div class="skill-pill-item"><i class="fas fa-cloud-arrow-down"></i> Axios</div>
-              <div class="skill-pill-item"><i class="fas fa-server"></i> Next.js API Routes</div>
-              <div class="skill-pill-item"><i class="fas fa-database"></i> Local Storage</div>
+              <div class="skill-pill-item"><i class="fas fa-bolt" style="color: #f59e0b;"></i> WebSockets & Socket.IO
+              </div>
+              <div class="skill-pill-item"><i class="fas fa-user-shield" style="color: #10b981;"></i> RBAC Access
+                Control</div>
+              <div class="skill-pill-item"><i class="fas fa-key"></i> JWT Authentication</div>
+              <div class="skill-pill-item"><i class="fas fa-lock"></i> Bcrypt.js Security</div>
+              <div class="skill-pill-item"><i class="fas fa-sliders"></i> Rate Limiting & Pagination</div>
+              <div class="skill-pill-item"><i class="fas fa-plug"></i> Centralized Error Handling</div>
+              <div class="skill-pill-item"><i class="fas fa-cloud-arrow-down"></i> Next.js API Routes</div>
             </div>
           </div>
 
@@ -1835,19 +1893,20 @@
               <div class="skill-category-icon"><i class="devicon-mongodb-plain"></i></div>
               <div>
                 <h3>Databases & Architecture</h3>
-                <span style="font-size:0.8rem; color:var(--text-muted);">Data Modeling & Storage</span>
+                <span style="font-size:0.8rem; color:var(--text-muted);">Data Modeling & Cloud Storage</span>
               </div>
             </div>
             <div class="skills-list-grid">
               <div class="skill-pill-item"><i class="devicon-mongodb-plain"></i> MongoDB</div>
+              <div class="skill-pill-item"><i class="fas fa-leaf"></i> Mongoose ODM</div>
+              <div class="skill-pill-item"><i class="fab fa-aws" style="color: #f59e0b;"></i> AWS S3</div>
+              <div class="skill-pill-item"><i class="fas fa-cloud-arrow-up" style="color: #06b6d4;"></i> Cloudinary
+              </div>
+              <div class="skill-pill-item"><i class="fas fa-filter"></i> Aggregation Pipelines</div>
               <div class="skill-pill-item"><i class="devicon-postgresql-plain" style="color:#38bdf8;"></i> PostgreSQL
               </div>
               <div class="skill-pill-item"><i class="fas fa-bolt" style="color:#10b981;"></i> Supabase</div>
-              <div class="skill-pill-item"><i class="fas fa-leaf"></i> Mongoose ODM</div>
-              <div class="skill-pill-item"><i class="fab fa-aws"></i> AWS S3 & Cloud</div>
-              <div class="skill-pill-item"><i class="fas fa-filter"></i> Aggregation Pipelines</div>
               <div class="skill-pill-item"><i class="fas fa-diagram-project"></i> Schema Architecture</div>
-              <div class="skill-pill-item"><i class="fas fa-lock"></i> Data Security</div>
               <div class="skill-pill-item"><i class="fas fa-gauge-high"></i> Query Optimization</div>
             </div>
           </div>
@@ -1857,18 +1916,20 @@
             <div class="skill-category-header">
               <div class="skill-category-icon"><i class="devicon-git-plain"></i></div>
               <div>
-                <h3>Workflow & DevOps</h3>
-                <span style="font-size:0.8rem; color:var(--text-muted);">Tools, Testing & Deploy</span>
+                <h3>Workflow, DevOps & Testing</h3>
+                <span style="font-size:0.8rem; color:var(--text-muted);">Containers, Quality & CI/CD</span>
               </div>
             </div>
             <div class="skills-list-grid">
-              <div class="skill-pill-item"><i class="devicon-git-plain"></i> Git & GitHub</div>
               <div class="skill-pill-item"><i class="devicon-docker-plain"></i> Docker & Compose</div>
               <div class="skill-pill-item"><i class="devicon-nginx-original"></i> Nginx</div>
-              <div class="skill-pill-item"><i class="devicon-vscode-plain"></i> VS Code</div>
-              <div class="skill-pill-item"><i class="fas fa-paper-plane"></i> Postman</div>
-              <div class="skill-pill-item"><i class="devicon-vite-original"></i> Vite & Webpack</div>
+              <div class="skill-pill-item"><i class="fas fa-paper-plane" style="color: #f97316;"></i> Postman (API
+                Testing)</div>
+              <div class="skill-pill-item"><i class="fas fa-vial-circle-check" style="color: #ec4899;"></i> Jest (Unit
+                Testing)</div>
+              <div class="skill-pill-item"><i class="devicon-git-plain"></i> Git & GitHub</div>
               <div class="skill-pill-item"><i class="fas fa-cloud"></i> Vercel & Netlify</div>
+              <div class="skill-pill-item"><i class="fas fa-server" style="color: #10b981;"></i> Render Hosting</div>
               <div class="skill-pill-item"><i class="fas fa-chart-line"></i> Technical SEO</div>
             </div>
           </div>
@@ -1881,19 +1942,20 @@
                   class="fas fa-brain"></i></div>
               <div>
                 <h3>AI & Agentic Engineering</h3>
-                <span style="font-size:0.8rem; color:var(--text-muted);">High-Velocity Delivery</span>
+                <span style="font-size:0.8rem; color:var(--text-muted);">High-Velocity Delivery & LLMs</span>
               </div>
             </div>
             <div class="skills-list-grid">
-              <div class="skill-pill-item"><i class="fas fa-brain" style="color:#a855f7;"></i> Claude AI</div>
+              <div class="skill-pill-item"><i class="fas fa-microchip" style="color:#06b6d4;"></i> LLM Integration APIs
+              </div>
               <div class="skill-pill-item"><i class="fas fa-terminal" style="color:#06b6d4;"></i> Cursor AI</div>
-              <div class="skill-pill-item"><i class="fas fa-robot" style="color:#6366f1;"></i> Antigravity AI</div>
               <div class="skill-pill-item"><i class="fab fa-github" style="color:#f8fafc;"></i> GitHub Copilot</div>
+              <div class="skill-pill-item"><i class="fas fa-wand-magic-sparkles" style="color:#f59e0b;"></i> Prompt
+                Engineering</div>
+              <div class="skill-pill-item"><i class="fas fa-robot" style="color:#6366f1;"></i> Antigravity AI</div>
+              <div class="skill-pill-item"><i class="fas fa-brain" style="color:#a855f7;"></i> Claude AI</div>
               <div class="skill-pill-item"><i class="fas fa-sparkles" style="color:#10b981;"></i> ChatGPT</div>
               <div class="skill-pill-item"><i class="fas fa-bolt" style="color:#38bdf8;"></i> Google Gemini</div>
-              <div class="skill-pill-item"><i class="fas fa-microchip" style="color:#ec4899;"></i> DeepSeek</div>
-              <div class="skill-pill-item"><i class="fas fa-wand-magic-sparkles" style="color:#f59e0b;"></i> Prompt Eng.
-              </div>
             </div>
           </div>
 
@@ -2064,8 +2126,8 @@
       <div class="footer-links">
         <a href="#home" class="footer-link">Back to Top</a>
         <a href="#education" class="footer-link">Education</a>
-        <a href="https://drive.google.com/file/d/1sxf3w-lTKI5FoGiG-8MaAkf7FKm5wc3z/view?usp=drive_link" target="_blank"
-          rel="noopener noreferrer" class="footer-link">Resume</a>
+        <a href="https://drive.google.com/file/d/1h_oZurtWzojvwukD9gKk56DYABd8xEV6/view?usp=drive_link" target="_blank"
+          rel="noopener noreferrer" class="footer-link" title="View / Download CV">Resume (PDF)</a>
         <a href="https://github.com/Ali-Raza4321" target="_blank" rel="noopener noreferrer"
           class="footer-link">GitHub</a>
       </div>
@@ -2377,7 +2439,7 @@
       if (document.fonts && document.fonts.ready) {
         document.fonts.ready.then(() => {
           targetProgress = Math.max(targetProgress, 40);
-        }).catch(() => {});
+        }).catch(() => { });
       }
 
       // Full window load event (CSS, scripts, subresources)
@@ -2427,7 +2489,7 @@
         // Check if finished
         const allAssetsSettled = (isWindowLoaded || loadedImages >= totalImages);
         if ((allAssetsSettled && elapsed >= minDisplayTime && currentProgress >= 100) ||
-            (elapsed >= maxCeilingTimeout && currentProgress >= 99)) {
+          (elapsed >= maxCeilingTimeout && currentProgress >= 99)) {
           finishPreloader();
         } else {
           if (isWindowLoaded && elapsed >= minDisplayTime) {
