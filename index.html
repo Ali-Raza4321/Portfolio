@@ -34,9 +34,73 @@
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Critical Preloader Styles (Instant render, prevents FOUC) -->
+  <style>
+    body.is-loading {
+      overflow: hidden !important;
+      height: 100vh !important;
+      touch-action: none;
+    }
+    .page-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      height: 100dvh;
+      z-index: 999999;
+      background-color: #070b14;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    body.light-mode .page-loader {
+      background-color: #f8fafc;
+    }
+  </style>
+  <noscript>
+    <style>
+      .page-loader { display: none !important; }
+      body.is-loading { overflow: auto !important; height: auto !important; }
+    </style>
+  </noscript>
+  <script>
+    try {
+      const savedTheme = localStorage.getItem('ar_portfolio_theme');
+      if (savedTheme === 'light-mode') {
+        document.documentElement.classList.add('light-mode');
+        document.addEventListener('DOMContentLoaded', () => document.body.classList.add('light-mode'));
+      }
+    } catch(e) {}
+  </script>
 </head>
 
-<body>
+<body class="is-loading">
+  <!-- Full Page Preloader -->
+  <div id="page-loader" class="page-loader" role="status" aria-live="polite" aria-label="Loading Ali Raza Portfolio">
+    <div class="loader-ambient-glow loader-glow-1"></div>
+    <div class="loader-ambient-glow loader-glow-2"></div>
+    <div class="loader-container">
+      <div class="loader-visual">
+        <div class="loader-orbital loader-orbital-outer"></div>
+        <div class="loader-orbital loader-orbital-middle"></div>
+        <div class="loader-orbital loader-orbital-pulse"></div>
+        <div class="loader-core">
+          <span class="loader-brand-letters">AR</span>
+        </div>
+      </div>
+      <div class="loader-brand-name">Ali Raza<span>.</span></div>
+      <div class="loader-progress-track">
+        <div class="loader-progress-fill" id="loader-progress-fill"></div>
+      </div>
+      <div class="loader-meta">
+        <span class="loader-status-text" id="loader-status-text">Initializing portfolio...</span>
+        <span class="loader-percent-text" id="loader-percent-text">0%</span>
+      </div>
+    </div>
+  </div>
+
   <!-- Scroll Progress Indicator -->
   <div id="scroll-progress"></div>
 
@@ -2140,9 +2204,12 @@
       setTimeout(typeLoop, speed);
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(typeLoop, 500);
-    });
+    let typewriterStarted = false;
+    function startTypewriter() {
+      if (typewriterStarted) return;
+      typewriterStarted = true;
+      setTimeout(typeLoop, 250);
+    }
 
     // 5. Theme Toggle with LocalStorage
     const themeBtn = document.getElementById('theme-toggle-btn');
@@ -2243,6 +2310,144 @@
       showToast("Redirecting to your email client...");
       document.getElementById('contact-form').reset();
     }
+
+    // 9. Full-Page Asset Preloader Controller
+    (function initPortfolioPreloader() {
+      const loader = document.getElementById('page-loader');
+      const progressFill = document.getElementById('loader-progress-fill');
+      const percentText = document.getElementById('loader-percent-text');
+      const statusText = document.getElementById('loader-status-text');
+
+      if (!loader) {
+        startTypewriter();
+        return;
+      }
+
+      const statusStages = [
+        { min: 0, text: 'Initializing portfolio...' },
+        { min: 30, text: 'Loading visual assets & images...' },
+        { min: 65, text: 'Preparing interactive experience...' },
+        { min: 90, text: 'Almost ready...' },
+        { min: 100, text: 'Welcome!' }
+      ];
+
+      function updateStatus(pct) {
+        if (!statusText) return;
+        for (let i = statusStages.length - 1; i >= 0; i--) {
+          if (pct >= statusStages[i].min) {
+            if (statusText.textContent !== statusStages[i].text) {
+              statusText.textContent = statusStages[i].text;
+            }
+            break;
+          }
+        }
+      }
+
+      // Collect all images in the DOM
+      const images = Array.from(document.querySelectorAll('img'));
+      const totalImages = Math.max(images.length, 1);
+      let loadedImages = 0;
+      let isWindowLoaded = false;
+      let targetProgress = 15;
+      let currentProgress = 0;
+      let isComplete = false;
+      const startTime = Date.now();
+      const minDisplayTime = 700; // Ensures a graceful, pleasing animation without jitter
+      const maxCeilingTimeout = 4000; // Fail-safe limit so user is never stuck
+
+      function notifyImageLoaded() {
+        loadedImages++;
+        const ratio = Math.min(loadedImages / totalImages, 1);
+        targetProgress = Math.max(targetProgress, Math.round(15 + ratio * 75));
+        if (isWindowLoaded && loadedImages >= totalImages) {
+          targetProgress = 100;
+        }
+      }
+
+      images.forEach(img => {
+        if (img.complete && img.naturalHeight !== 0) {
+          notifyImageLoaded();
+        } else {
+          img.addEventListener('load', notifyImageLoaded, { once: true });
+          img.addEventListener('error', notifyImageLoaded, { once: true });
+        }
+      });
+
+      // Track fonts ready
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => {
+          targetProgress = Math.max(targetProgress, 40);
+        }).catch(() => {});
+      }
+
+      // Full window load event (CSS, scripts, subresources)
+      window.addEventListener('load', () => {
+        isWindowLoaded = true;
+        targetProgress = 100;
+      });
+
+      function finishPreloader() {
+        if (isComplete) return;
+        isComplete = true;
+
+        if (progressFill) progressFill.style.width = '100%';
+        if (percentText) percentText.textContent = '100%';
+        updateStatus(100);
+
+        setTimeout(() => {
+          loader.classList.add('loaded');
+          document.body.classList.remove('is-loading');
+
+          // Trigger typewriter smoothly on page reveal
+          startTypewriter();
+
+          setTimeout(() => {
+            loader.style.display = 'none';
+            loader.setAttribute('aria-hidden', 'true');
+          }, 700);
+        }, 220);
+      }
+
+      function stepProgress() {
+        if (isComplete) return;
+
+        const elapsed = Date.now() - startTime;
+
+        // Smooth increment towards target
+        if (currentProgress < targetProgress) {
+          const delta = targetProgress - currentProgress;
+          const step = Math.max(1, Math.ceil(delta * 0.15));
+          currentProgress = Math.min(targetProgress, currentProgress + step);
+        }
+
+        if (progressFill) progressFill.style.width = currentProgress + '%';
+        if (percentText) percentText.textContent = currentProgress + '%';
+        updateStatus(currentProgress);
+
+        // Check if finished
+        const allAssetsSettled = (isWindowLoaded || loadedImages >= totalImages);
+        if ((allAssetsSettled && elapsed >= minDisplayTime && currentProgress >= 100) ||
+            (elapsed >= maxCeilingTimeout && currentProgress >= 99)) {
+          finishPreloader();
+        } else {
+          if (isWindowLoaded && elapsed >= minDisplayTime) {
+            targetProgress = 100;
+          }
+          requestAnimationFrame(stepProgress);
+        }
+      }
+
+      requestAnimationFrame(stepProgress);
+
+      // Ultimate fallback timer
+      setTimeout(() => {
+        if (!isComplete) {
+          targetProgress = 100;
+          currentProgress = 100;
+          finishPreloader();
+        }
+      }, maxCeilingTimeout + 300);
+    })();
   </script>
 </body>
 
